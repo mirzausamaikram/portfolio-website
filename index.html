@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usama Ikram | Junior Full-Stack Developer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header id="header">
+    <nav class="container">
+        <a href="#hero" class="logo">Usama Ikram</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#whats-next">What's Next</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero" class="hero-section">
+    <div class="hero-content">
+        <h1>I turn caffeine into clean code and vague ideas into functional applications.</h1>
+        <p>A passionate Junior Full-Stack Developer with a background in leadership and problem-solving.</p>
+        <a href="#projects" class="cta-button">See My Work</a>
+    </div>
+</section>
+
+<section id="about" class="about-section container">
+    <div class="about-image">
+        <img src="images/profile.jpg" alt="Usama Ikram professional photo">
+    </div>
+    <div class="about-text">
+        <h2>About Me</h2>
+        <p>I've worn many hats—from logistics to event supervision—and my experiences have given me a unique perspective on problem-solving. A prime example was during a high-stakes FIFA match, where an unexpectedly large and impassioned crowd began to breach security. As a supervisor, I took immediate action by coordinating with other supervisors and marshals to form a human wall, successfully containing the situation and preventing any harm. This experience taught me the importance of clear communication, leadership, and staying calm under pressure—skills I now apply to debugging complex code and working within a development team. I am a team leader, a fast learner, and I don't panic quickly, which makes me a reliable team player.</p>
+        <a href="assets/resume.pdf" download class="cta-button secondary">Download CV</a>
+    </div>
+</section>
+
+<section id="projects" class="projects-section container">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <img src="images/project-1.jpg" alt="Dynamic Web Application screenshot">
+            <div class="project-info">
+                <h3>Dynamic Web Application</h3>
+                <p>A full-stack application built for [purpose of the app]. During this project, I faced a significant challenge with the MySQL database connection. After a meticulous process of troubleshooting, I discovered an issue with the configuration settings. By carefully reviewing the connection string and ensuring all credentials and permissions were correctly set, I successfully resolved the bug. This experience strengthened my understanding of database management and my ability to debug complex, full-stack issues.</p>
+                <div class="tech-stack">
+                    <span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" target="_blank" class="link-button">Live Demo</a>
+                    <a href="https://github.com/mirzausamaikram" target="_blank" class="link-button">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project-2.jpg" alt="HK Tourist Website screenshot">
+            <div class="project-info">
+                <h3>HK Tourist Website</h3>
+                <p>A front-end website designed to showcase tourist attractions in Hong Kong.</p>
+                <div class="tech-stack">
+                    <span>HTML</span><span>CSS</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" target="_blank" class="link-button">Live Demo</a>
+                    <a href="https://github.com/mirzausamaikram" target="_blank" class="link-button">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project-3.jpg" alt="Bank Teller Simulation screenshot">
+            <div class="project-info">
+                <h3>Bank Teller Simulation (Java)</h3>
+                <p>A desktop application demonstrating object-oriented programming principles.</p>
+                <div class="tech-stack">
+                    <span>Java</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/mirzausamaikram" target="_blank" class="link-button">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="skills" class="skills-section container">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card"><h3>Programming Languages</h3><p>Python, Java, C#, JavaScript, PHP, HTML, CSS</p></div>
+        <div class="skill-card"><h3>Databases</h3><p>MySQL</p></div>
+        <div class="skill-card"><h3>Tools & Platforms</h3><p>Git, GitHub, VS Code, Android Studio, Gemini API</p></div>
+    </div>
+</section>
+
+<section id="whats-next" class="whats-next-section container">
+    <h2>What's Next?</h2>
+    <p>I'm currently expanding my skillset by diving into new technologies. My next major goal is to learn **React.js** to build more dynamic and modern front-end interfaces, and I am particularly excited about exploring **Machine Learning** and its applications in web development.</p>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Let's Connect</h2>
+        <p>Ready to talk tech? I'm always open to new opportunities and collaborations.</p>
+        <div class="contact-details">
+            <a href="mailto:mirzausamaikram@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> mirzausamaikram@gmail.com</a>
+            <a href="https://linkedin.com/in/usama-ikram-bb08991b0" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/mirzausamaikram" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <form id="contact-form" action="contact.php" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Usama Ikram. All rights reserved.</p>
+        <a href="#hero" class="back-to-top">Back to top</a>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
