@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --primary-color: #3e535e;        /* Dark background, slightly different */
+    --primary-color: #0d121c;        /* Dark background, slightly different */
     --secondary-color: #f4f4f4;      /* Light text */
-    --accent-color: #2e8b57;         /* New accent color: sea green */
-    --card-background: #1c1d1f;      /* Card color */
-    --hover-color: #276c43;          /* Hover color for buttons */
+    --accent-color: #4CAF50;         /* New accent color: a brighter green */
+    --card-background: #181c25;      /* Card color */
+    --hover-color: #45a049;          /* Hover color for buttons */
 }
 
 * {
@@ -49,7 +49,7 @@ h1, h2, h3 {
 }
 
 #header.scrolled {
-    background-color: rgba(15, 16, 18, 0.95);
+    background-color: rgba(13, 18, 28, 0.95);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -97,7 +97,7 @@ h1, h2, h3 {
 
 .hero-content {
     max-width: 800px;
-    background: rgba(15, 16, 18, 0.7);
+    background: rgba(13, 18, 28, 0.7);
     padding: 40px;
     border-radius: 10px;
 }
