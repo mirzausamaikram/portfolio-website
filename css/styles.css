@@ -422,6 +422,8 @@ h1, h2, h3 {
 .cta-button.secondary {
     background-color: transparent;
     border: 2px solid var(--accent-color);
+    margin-top: 20px;
+    display: inline-block;
 }
 
 .cta-button.secondary:hover {
