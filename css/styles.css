@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --primary-color: #1a1a1a;        /* Dark background */
+    --primary-color: #3e535e;        /* Dark background, slightly different */
     --secondary-color: #f4f4f4;      /* Light text */
-    --accent-color: #007bff;         /* Button and link color */
-    --card-background: #2a2a2a;      /* Card color */
-    --hover-color: #0056b3;          /* Hover color for buttons */
+    --accent-color: #2e8b57;         /* New accent color: sea green */
+    --card-background: #1c1d1f;      /* Card color */
+    --hover-color: #276c43;          /* Hover color for buttons */
 }
 
 * {
@@ -49,7 +49,7 @@ h1, h2, h3 {
 }
 
 #header.scrolled {
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: rgba(15, 16, 18, 0.95);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -97,7 +97,7 @@ h1, h2, h3 {
 
 .hero-content {
     max-width: 800px;
-    background: rgba(26, 26, 26, 0.7);
+    background: rgba(15, 16, 18, 0.7);
     padding: 40px;
     border-radius: 10px;
 }
@@ -114,7 +114,7 @@ h1, h2, h3 {
 
 /* --- About Section --- */
 .about-section {
-    padding: 100px 20px;
+    padding: 80px 20px;
     display: flex;
     gap: 40px;
     align-items: center;
@@ -143,7 +143,7 @@ h1, h2, h3 {
 /* --- Projects Section --- */
 .projects-section {
     background-color: var(--card-background);
-    padding: 100px 20px;
+    padding: 80px 20px;
 }
 
 .projects-section h2 {
@@ -215,9 +215,56 @@ h1, h2, h3 {
     background-color: var(--hover-color);
 }
 
+/* --- Experience & Certifications Section --- */
+.experience-section {
+    padding: 80px 20px;
+}
+
+.experience-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.certification-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    padding: 20px;
+    text-align: center;
+}
+
+.certification-card img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.certification-card img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.certification-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+
 /* --- Skills Section --- */
 .skills-section {
-    padding: 100px 20px;
+    background-color: var(--card-background);
+    padding: 80px 20px;
 }
 
 .skills-section h2 {
@@ -234,7 +281,7 @@ h1, h2, h3 {
 }
 
 .skill-card {
-    background-color: var(--card-background);
+    background-color: var(--primary-color);
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -252,9 +299,9 @@ h1, h2, h3 {
     font-size: 1rem;
 }
 
-/* --- What's Next Section (NEW) --- */
+/* --- What's Next Section --- */
 .whats-next-section {
-    padding: 100px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
@@ -273,7 +320,7 @@ h1, h2, h3 {
 /* --- Contact Section --- */
 .contact-section {
     background-color: var(--card-background);
-    padding: 100px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
@@ -387,7 +434,7 @@ h1, h2, h3 {
     .hero-content h1 {
         font-size: 2.5rem;
     }
-
+    
     .hero-content p {
         font-size: 1rem;
     }
@@ -396,8 +443,8 @@ h1, h2, h3 {
         flex-direction: column;
         text-align: center;
     }
-
-    .skills-grid, .projects-grid {
+    
+    .skills-grid, .projects-grid, .certifications-grid {
         grid-template-columns: 1fr;
     }
 
