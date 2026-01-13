@@ -385,10 +385,14 @@ h1, h2, h3 {
     margin-bottom: 1rem;
 }
 
+.about-text .cta-button.secondary {
+    margin-top: 4rem;
+}
+
 /* --- Projects Section --- */
 .projects-section {
     background-color: transparent;
-    padding: 80px 20px;
+    padding: 120px 20px;
     opacity: 1 !important;
     transform: none !important;
 }
@@ -477,7 +481,7 @@ h1, h2, h3 {
 
 /* --- Experience & Certifications Section --- */
 .experience-section {
-    padding: 80px 20px;
+    padding: 120px 20px;
 }
 
 .experience-section h2 {
@@ -610,10 +614,11 @@ h1, h2, h3 {
 
 .frameworks-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px 30px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .framework-card {
@@ -624,6 +629,10 @@ h1, h2, h3 {
     border: 2px solid rgba(122, 212, 176, 0.15);
     transition: all 0.3s ease;
     will-change: transform;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .framework-card:hover {
@@ -1099,7 +1108,7 @@ h1, h2, h3 {
 
 /* --- Scholarships & Honors Section --- */
 .scholarships-section {
-    padding: 80px 0;
+    padding: 120px 0;
 }
 
 .scholarships-section h2 {
