@@ -1,0 +1,39 @@
+.project-subtitle {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.engineering-wins {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.engineering-wins li {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.engineering-wins li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #f4d03f;
+    font-weight: bold;
+}
+
+/* Light mode adjustments */
+.light-mode .project-subtitle {
+    color: #666;
+}
+
+.light-mode .engineering-wins li {
+    color: #555;
+}
