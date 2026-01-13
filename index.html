@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usama Ikram | Junior Full-Stack Developer</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Usama Ikram | Junior Full-Stack Developer">
+    <meta property="og:description" content="Passionate Junior Full-Stack Developer with 3+ years building projects. Specializing in web development, problem-solving, and team collaboration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Usama Ikram | Junior Full-Stack Developer">
+    <meta name="twitter:description" content="Passionate Junior Full-Stack Developer with 3+ years building projects. Specializing in web development, problem-solving, and team collaboration.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/og-image.jpg">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="Portfolio of Usama Ikram, a Junior Full-Stack Developer specializing in PHP, JavaScript, Java, Python, and MySQL.">
+    <meta name="keywords" content="Full-Stack Developer, Web Developer, PHP, JavaScript, Java, Python, MySQL, Portfolio">
+    <meta name="author" content="Usama Ikram">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="images/hero-bg.jpg" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" as="style">
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Usama Ikram",
+      "jobTitle": "Junior Full-Stack Developer",
+      "url": "https://yourwebsite.com",
+      "sameAs": [
+        "https://linkedin.com/in/usama-ikram-bb08991b0",
+        "https://github.com/mirzausamaikram"
+      ],
+      "email": "mirzausamaikram@gmail.com",
+      "description": "Passionate Junior Full-Stack Developer with 3+ years building projects. Specializing in web development, problem-solving, and team collaboration.",
+      "knowsAbout": ["PHP", "JavaScript", "Python", "Java", "MySQL", "HTML", "CSS", "Web Development"],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Your University/College"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Usama Ikram Portfolio",
+      "url": "https://yourwebsite.com",
+      "description": "Portfolio website showcasing full-stack development projects and skills",
+      "author": {
+        "@type": "Person",
+        "name": "Usama Ikram"
+      }
+    }
+    </script>
 </head>
 <body>
 
@@ -20,20 +79,57 @@
             <li><a href="#whats-next">What's Next</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
 </header>
 
 <section id="hero" class="hero-section">
     <div class="hero-content">
+        <span class="eyebrow">Full-Stack · Problem Solver</span>
         <h1>I turn caffeine into clean code and vague ideas into functional applications.</h1>
         <p>A passionate Junior Full-Stack Developer with a background in leadership and problem-solving.</p>
-        <a href="#projects" class="cta-button">See My Work</a>
+        <div class="hero-badges">
+            <div class="badge">3+ years building projects</div>
+            <div class="badge">AI-curious · React in progress</div>
+            <div class="badge">Team-first collaborator</div>
+        </div>
+        <div class="hero-actions">
+            <a href="#projects" class="cta-button">See My Work</a>
+            <a href="#contact" class="cta-button secondary">Let’s talk</a>
+        </div>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+</section>
+
+<!-- Achievement Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="6">0</div>
+                <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number" data-target="7">0</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section id="about" class="about-section container">
+<section id="about" class="about-section container reveal">
     <div class="about-image">
-        <img src="images/profile-pic.png" alt="Usama Ikram professional photo">
+        <img src="images/profile-pic.png" alt="Usama Ikram professional photo" loading="lazy">
     </div>
     <div class="about-text">
         <h2>About Me</h2>
@@ -42,12 +138,12 @@
     </div>
 </section>
 
-<section id="projects" class="projects-section container">
+<section id="projects" class="projects-section container reveal">
     <h2>My Projects</h2>
     <div class="projects-grid">
 
-        <div class="project-card">
-            <img src="images/PHP_Project.png" alt="Dynamic Web Application screenshot">
+        <div class="project-card reveal">
+            <img src="images/PHP_Project.png" alt="Dynamic Web Application screenshot" loading="lazy">
             <div class="project-info">
                 <h3>Dynamic Web Application</h3>
                 A full-stack application built for a school project, where I designed and implemented a MySQL database backend and connected it to the front end using PHP server-side scripting. This project demonstrates my ability to build a complete web application from scratch, including handling data integrity and debugging complex, full-stack issues with database connections. It also features a separate Python Flask application that functions as a RESTful API for currency conversion.
@@ -60,8 +156,8 @@
             </div>
         </div>
 
-        <div class="project-card">
-            <img src="images/Tourist.png" alt="HK Tourist Website screenshot">
+        <div class="project-card reveal">
+            <img src="images/Tourist.png" alt="HK Tourist Website screenshot" loading="lazy">
             <div class="project-info">
                 <h3>HK Tourist Website</h3>
                 <p>A client-side website developed as an IT Essentials assignment. The project demonstrates proficiency in HTML5, CSS3, and JavaScript, with a focus on creating an attractive, responsive user interface and validating form data without the use of external frameworks. This project showcases my ability to implement a multi-page site with clean, commented code.</p>
@@ -74,8 +170,8 @@
             </div>
         </div>
 
-        <div class="project-card">
-            <img src="images/Bank_Teller_Simulation.PNG" alt="Bank Teller Simulation screenshot">
+        <div class="project-card reveal">
+            <img src="images/Bank_Teller_Simulation.PNG" alt="Bank Teller Simulation screenshot" loading="lazy">
             <div class="project-info">
                 <h3>Bank Teller Simulation (Java)</h3>
                 <p>A command-line simulation program for a **Data Structures and Algorithms** course. It models a customer waiting line using a custom **Queue data structure** built with a **LinkedList**. The program dynamically handles a variable number of tellers, simulates customer flow, and provides statistical analysis on metrics like customers served and queue length. It also includes a custom **Exception class** for robust error handling.</p>
@@ -89,8 +185,8 @@
             </div>
         </div>
 
-        <div class="project-card">
-            <img src="images/15-20_Game.png" alt="15-20 game code screenshot">
+        <div class="project-card reveal">
+            <img src="images/15-20_Game.png" alt="15-20 game code screenshot" loading="lazy">
             <div class="project-info">
                 <h3>15-20 Game (Android)</h3>
                 <p>Developed a classic 15-20 number puzzle game for Android, featuring an intuitive drag-and-drop interface and game-winning logic. This project demonstrates proficiency in Android application development using Java. </p>
@@ -103,8 +199,8 @@
                 </div>
             </div>
         </div>
-        <div class="project-card">
-            <img src="images/Gomoku.png" alt="Gomoku Game screenshot">
+        <div class="project-card reveal">
+            <img src="images/Gomoku.png" alt="Gomoku Game screenshot" loading="lazy">
             <div class="project-info">
                 <h3>Gomoku Game (Java)</h3>
                 <p>A console-based Gomoku game in Java, where two players take turns on a 10x10 grid. The objective is to be the first to connect four pieces in a row. This project demonstrates my understanding of core Java concepts, including loops, arrays, and conditional logic to manage game state, validate moves, and check for winning conditions.</p>
@@ -117,21 +213,8 @@
             </div>
         </div>
 
-        <div class="project-card">
-            <img src="images/UI_Project.png" alt="UI/UX Design Project screenshot">
-            <div class="project-info">
-                <h3>UI/UX Design Project</h3>
-                <p>This project represents **Phase 1** of a larger group assignment. The objective was to design and build the complete user interface (UI) for a centralized management system, focusing on applying best practices in front-end development. I created two distinct interfaces for **Customers** and used **JavaScript** to implement client-side interactive behaviors and form validation.</p>
-                <div class="tech-stack">
-                    <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/mirzausamaikram" target="_blank" class="link-button">View on GitHub</a>
-                </div>
-            </div>
-        </div>
-        <div class="project-card">
-            <img src="images/UI_Project.png" alt="UI/UX Design Project screenshot">
+        <div class="project-card reveal">
+            <img src="images/UI_Project.png" alt="UI/UX Design Project screenshot" loading="lazy">
             <div class="project-info">
                 <h3>UI/UX Design Project</h3>
                 <p>This project represents **Phase 1** of a larger group assignment. The objective was to design and build the complete user interface (UI) for a centralized management system, focusing on applying best practices in front-end development. I created two distinct interfaces for **Customers** and used **JavaScript** to implement client-side interactive behaviors and form validation.</p>
@@ -147,12 +230,12 @@
     </div>
 </section>
 
-<section id="experience" class="experience-section container">
+<section id="experience" class="experience-section container reveal">
     <h2>Experience & Certifications</h2>
     <div class="certifications-grid">
 
         <div class="certification-card">
-            <img src="images/Solomon.png" alt="JPMorgan Career LaunchPad Certificate">
+            <img src="images/Solomon.png" alt="JPMorgan Career LaunchPad Certificate" loading="lazy">
             <div class="certification-info">
                 <h3>JPMorgan Career LaunchPad Program</h3>
                 <p>As part of the IT & Technology team on the GoodClass.AI project, I utilized **Python and the Gemini API to develop RESTful APIs** to contribute to a real-world AI application. This experience provided me with hands-on skills in AI-driven development and teamwork in a professional setting.</p>
@@ -202,22 +285,266 @@
     </div>
 </section>
 
-<section id="skills" class="skills-section container">
+<section id="skills" class="skills-section container reveal">
     <h2>My Skills</h2>
-    <div class="skills-grid">
-        <div class="skill-card"><h3>Programming Languages</h3><p>HTML, CSS, JavaScript, PHP, Python, Java, C#</p></div>
-        <div class="skill-card"><h3>Databases</h3><p>MySQL</p></div>
-        <div class="skill-card"><h3>Tools & Platforms</h3><p>Git, GitHub, VS Code, Android Studio, Gemini API</p></div>
-        <div class="skill-card"><h3>Libraries & Frameworks</h3><p>BootStrap</p></div>
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <div class="skill-item">
+                <div class="skill-name">HTML & CSS</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="90"></div>
+                </div>
+                <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">PHP</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="85"></div>
+                </div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Python</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="75"></div>
+                </div>
+                <span class="skill-percent">75%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Java</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">C#</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="70"></div>
+                </div>
+                <span class="skill-percent">70%</span>
+            </div>
+        </div>
+        
+        <div class="skill-category">
+            <h3>Databases & Tools</h3>
+            <div class="skill-item">
+                <div class="skill-name">MySQL</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="85"></div>
+                </div>
+                <span class="skill-percent">85%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Git & GitHub</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">VS Code</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="90"></div>
+                </div>
+                <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Android Studio</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="75"></div>
+                </div>
+                <span class="skill-percent">75%</span>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Bootstrap</div>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+            </div>
+        </div>
     </div>
 </section>
 
-<section id="whats-next" class="whats-next-section container">
+<!-- Libraries & Frameworks Section -->
+<section id="frameworks" class="frameworks-section container reveal">
+    <h2>Libraries & Frameworks</h2>
+    <div class="frameworks-grid">
+        <div class="framework-card">
+            <i class="fab fa-bootstrap"></i>
+            <h3>Bootstrap</h3>
+            <p>Responsive design framework for building mobile-first websites</p>
+        </div>
+        <div class="framework-card">
+            <i class="fab fa-react"></i>
+            <h3>React.js</h3>
+            <p>Learning modern component-based UI development</p>
+        </div>
+        <div class="framework-card">
+            <i class="fab fa-node-js"></i>
+            <h3>Node.js</h3>
+            <p>JavaScript runtime for server-side development</p>
+        </div>
+        <div class="framework-card">
+            <i class="fas fa-code"></i>
+            <h3>Flask</h3>
+            <p>Python micro-framework for building RESTful APIs</p>
+        </div>
+        <div class="framework-card">
+            <i class="fab fa-git-alt"></i>
+            <h3>jQuery</h3>
+            <p>Fast and feature-rich JavaScript library</p>
+        </div>
+        <div class="framework-card">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Android SDK</h3>
+            <p>Native Android application development</p>
+        </div>
+        <div class="framework-card">
+            <i class="fas fa-table"></i>
+            <h3>Pandas</h3>
+            <p>Data manipulation and analysis library for Python</p>
+        </div>
+        <div class="framework-card">
+            <i class="fas fa-calculator"></i>
+            <h3>NumPy</h3>
+            <p>Numerical computing with Python arrays and matrices</p>
+        </div>
+        <div class="framework-card">
+            <i class="fas fa-book"></i>
+            <h3>Jupyter Notebook</h3>
+            <p>Interactive computational environment for data analysis</p>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="achievements-section container reveal">
+    <h2>Achievements & Recognition</h2>
+    <div class="achievements-timeline">
+        <div class="achievement-item reveal">
+            <div class="achievement-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="achievement-content">
+                <h3>FIFA Club World Cup Recognition</h3>
+                <p class="achievement-year">2023</p>
+                <p>Received Certificate of Appreciation for outstanding performance in transportation management at FIFA Club World Cup Saudi Arabia 2023</p>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <div class="achievement-icon">
+                <i class="fas fa-code-branch"></i>
+            </div>
+            <div class="achievement-content">
+                <h3>JPMorgan Career LaunchPad</h3>
+                <p class="achievement-year">2024</p>
+                <p>Successfully contributed to GoodClass.AI project, developing RESTful APIs using Python and Gemini API</p>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <div class="achievement-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="achievement-content">
+                <h3>Google Certifications</h3>
+                <p class="achievement-year">2023-2024</p>
+                <p>Completed multiple Google professional certificates including Project Management, Technical Support, and Prompting Essentials</p>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <div class="achievement-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="achievement-content">
+                <h3>15+ Completed Projects</h3>
+                <p class="achievement-year">2021-Present</p>
+                <p>Successfully designed and developed full-stack applications, Android apps, and web solutions</p>
+            </div>
+        </div>
+        <div class="achievement-item reveal">
+            <div class="achievement-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="achievement-content">
+                <h3>PERI Internship</h3>
+                <p class="achievement-year">2020</p>
+                <p>Completed logistics internship at PERI Saudi Arabia, gaining hands-on experience in inventory management and ERP systems</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Working With Technologies Section -->
+<section class="tech-logos-section container reveal">
+    <h2>Technologies I Work With</h2>
+    <div class="tech-logos-grid">
+        <div class="tech-logo" title="HTML5">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+        </div>
+        <div class="tech-logo" title="CSS3">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+        </div>
+        <div class="tech-logo" title="JavaScript">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+        </div>
+        <div class="tech-logo" title="PHP">
+            <i class="fab fa-php"></i>
+            <span>PHP</span>
+        </div>
+        <div class="tech-logo" title="Python">
+            <i class="fab fa-python"></i>
+            <span>Python</span>
+        </div>
+        <div class="tech-logo" title="Java">
+            <i class="fab fa-java"></i>
+            <span>Java</span>
+        </div>
+        <div class="tech-logo" title="Git">
+            <i class="fab fa-git-alt"></i>
+            <span>Git</span>
+        </div>
+        <div class="tech-logo" title="GitHub">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+        </div>
+        <div class="tech-logo" title="Bootstrap">
+            <i class="fab fa-bootstrap"></i>
+            <span>Bootstrap</span>
+        </div>
+        <div class="tech-logo" title="React (Learning)">
+            <i class="fab fa-react"></i>
+            <span>React</span>
+        </div>
+        <div class="tech-logo" title="Node.js">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+        </div>
+        <div class="tech-logo" title="MySQL">
+            <i class="fas fa-database"></i>
+            <span>MySQL</span>
+        </div>
+    </div>
+</section>
+
+<section id="whats-next" class="whats-next-section container reveal">
     <h2>What's Next?</h2>
     <p>I'm currently expanding my skillset by diving into new technologies. My next major goal is to learn **React.js** to build more dynamic and modern front-end interfaces, and I am particularly excited about exploring **Machine Learning** and its applications in web development.</p>
 </section>
 
-<section id="contact" class="contact-section">
+<section id="contact" class="contact-section reveal">
     <div class="container">
         <h2>Let's Connect</h2>
         <p>Ready to talk tech? I'm always open to new opportunities and collaborations.</p>
@@ -241,6 +568,11 @@
         <a href="#hero" class="back-to-top">Back to top</a>
     </div>
 </footer>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <script src="js/script.js"></script>
 
