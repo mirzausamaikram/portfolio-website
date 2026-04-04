@@ -351,73 +351,79 @@
         <div class="certifications-window">
             <div class="certifications-track" id="certifications-track">
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open JPMorgan Career LaunchPad Program details">
             <div class="certification-media">
                 <img src="images/Solomon.png" alt="JPMorgan Career LaunchPad Certificate" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Industry Program</p>
                 <h3>JPMorgan Career LaunchPad Program</h3>
-                <p class="certification-description">As part of the IT & Technology team on the GoodClass.AI project, I utilized **Python and the Gemini API to develop RESTful APIs** to contribute to a real-world AI application. This experience provided me with hands-on skills in AI-driven development and teamwork in a professional setting.</p>
+                <p class="certification-meta"><span>Aug 2025</span><span>JPMorgan</span></p>
+                <p class="certification-description">As part of the IT and Technology team on the GoodClass.AI project, I utilized Python and the Gemini API to develop RESTful APIs that contributed to a real-world AI application. This experience provided hands-on skills in AI-driven development and collaboration in a professional environment.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
         </article>
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open Internship at PERI Saudi Arabia details">
             <div class="certification-media">
                 <img src="images/Internship_PERI.jpg" alt="PERI Internship Certificate" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Internship</p>
                 <h3>Internship - PERI Saudi Arabia</h3>
+                <p class="certification-meta"><span>Sep-Dec 2020</span><span>PERI Saudi Arabia</span></p>
                 <p class="certification-description">I successfully completed a logistics internship at PERI Saudi Arabia from September to December 2020. My responsibilities included supporting the picking and loading process, handling material returns, and receiving basic training on the company's ERP system (PSD). This role enhanced my skills in logistics, inventory management, and teamwork.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
         </article>
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open Google Prompting Essentials details">
             <div class="certification-media">
                 <img src="images/Google_Prompting_Essentials.jpg" alt="Google Prompting Essentials Certificate" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Google Certificate</p>
                 <h3>Google Prompting Essentials</h3>
+                <p class="certification-meta"><span>Professional Credential</span><span>Google</span></p>
                 <p class="certification-description">I have successfully completed the Google Prompting Essentials course, where I learned the fundamentals of effective prompting for large language models. This certification has equipped me with skills to create high-quality, targeted prompts to generate desired outputs, an essential skill in today's AI-driven tech landscape.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
         </article>
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open Technical Support Fundamentals details">
             <div class="certification-media">
                 <img src="images/Technical _Support.jpg" alt="Google Technical Support Fundamentals Certificate" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Google Certificate</p>
                 <h3>Technical Support Fundamentals</h3>
+                <p class="certification-meta"><span>Foundation Credential</span><span>Google</span></p>
                 <p class="certification-description">This is to certify that I have successfully completed the Google Technical Support Fundamentals course, an online non-credit course authorized by Google and offered through Coursera. This course provided me with foundational knowledge and skills in IT support and troubleshooting.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
         </article>
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open Google Project Management Certificate details">
             <div class="certification-media">
                 <img src="images/Project_management.jpg" alt="Google Project Management Certificate" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Google Certificate</p>
                 <h3>Google Project Management Certificate</h3>
+                <p class="certification-meta"><span>Professional Credential</span><span>Google</span></p>
                 <p class="certification-description">I have successfully completed the Google Project Management Certificate, an online non-credit course authorized by Google and offered through Coursera. This demonstrates my proficiency in project planning, execution, and risk management.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
         </article>
 
-        <article class="certification-card">
+        <article class="certification-card" tabindex="0" role="button" aria-label="Open FIFA Club World Cup appreciation certificate details">
             <div class="certification-media">
                 <img src="images/FIFA.jpg" alt="FIFA Certificate of Appreciation" loading="lazy">
             </div>
             <div class="certification-info">
                 <p class="certification-tag">Global Event Operations</p>
                 <h3>Certificate of Appreciation: FIFA Club World Cup 2023</h3>
+                <p class="certification-meta"><span>Dec 2023</span><span>FIFA Club World Cup</span></p>
                 <p class="certification-description">This certificate is given to Usama Ikram Mirza for the outstanding performance & participation in the field of transportation management in the FIFA Club World Cup Saudi Arabia 2023.</p>
                 <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
             </div>
@@ -432,6 +438,23 @@
     </div>
 
     <div class="carousel-dots" id="experience-dots" aria-label="Experience carousel pagination"></div>
+
+    <div class="certification-modal" id="certification-modal" aria-hidden="true">
+        <div class="certification-modal-backdrop" id="certification-modal-backdrop"></div>
+        <div class="certification-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certification-modal-title">
+            <button class="certification-modal-close" id="certification-modal-close" aria-label="Close certification details">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="certification-modal-image" src="" alt="Certification image">
+            <div class="certification-modal-body">
+                <p class="certification-modal-kicker">Certification Details</p>
+                <h3 id="certification-modal-title"></h3>
+                <p class="certification-modal-meta" id="certification-modal-meta"></p>
+                <p id="certification-modal-description"></p>
+                <div class="certification-modal-links" id="certification-modal-links"></div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="skills" class="skills-section container reveal">

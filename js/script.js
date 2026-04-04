@@ -352,6 +352,7 @@ const certificationsTrack = document.getElementById('certifications-track');
 const experiencePrevBtn = document.getElementById('experience-prev');
 const experienceNextBtn = document.getElementById('experience-next');
 const experienceDots = document.getElementById('experience-dots');
+const certificationsWindow = document.querySelector('.certifications-window');
 const certificationCards = certificationsTrack ? Array.from(certificationsTrack.querySelectorAll('.certification-card')) : [];
 
 let experienceIndex = 0;
@@ -403,6 +404,10 @@ const updateExperienceCarousel = () => {
 };
 
 if (certificationsTrack && experiencePrevBtn && experienceNextBtn) {
+    certificationCards.forEach((card, idx) => {
+        card.style.transitionDelay = `${idx * 60}ms`;
+    });
+
     renderExperienceDots();
     updateExperienceCarousel();
 
@@ -422,9 +427,42 @@ if (certificationsTrack && experiencePrevBtn && experienceNextBtn) {
     });
 }
 
+let dragStartX = null;
+
+if (certificationsWindow) {
+    const onPointerDown = (event) => {
+        dragStartX = event.clientX;
+    };
+
+    const onPointerUp = (event) => {
+        if (dragStartX === null) return;
+        const delta = event.clientX - dragStartX;
+
+        if (Math.abs(delta) > 45) {
+            if (delta < 0) {
+                experienceIndex = Math.min(getMaxExperienceIndex(), experienceIndex + 1);
+            } else {
+                experienceIndex = Math.max(0, experienceIndex - 1);
+            }
+            updateExperienceCarousel();
+        }
+
+        dragStartX = null;
+    };
+
+    certificationsWindow.addEventListener('pointerdown', onPointerDown);
+    certificationsWindow.addEventListener('pointerup', onPointerUp);
+    certificationsWindow.addEventListener('pointercancel', () => {
+        dragStartX = null;
+    });
+}
+
 // Read more toggle for certification descriptions
 document.querySelectorAll('.read-more-btn').forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
         const card = button.closest('.certification-card');
         if (!card) return;
 
@@ -432,4 +470,83 @@ document.querySelectorAll('.read-more-btn').forEach(button => {
         button.textContent = expanded ? 'Show less' : 'Read more';
         button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     });
+});
+
+// Card parallax and modal details for certifications
+const certificationModal = document.getElementById('certification-modal');
+const certificationModalBackdrop = document.getElementById('certification-modal-backdrop');
+const certificationModalClose = document.getElementById('certification-modal-close');
+const certificationModalImage = document.getElementById('certification-modal-image');
+const certificationModalTitle = document.getElementById('certification-modal-title');
+const certificationModalMeta = document.getElementById('certification-modal-meta');
+const certificationModalDescription = document.getElementById('certification-modal-description');
+const certificationModalLinks = document.getElementById('certification-modal-links');
+
+const closeCertificationModal = () => {
+    if (!certificationModal) return;
+    certificationModal.classList.remove('active');
+    certificationModal.setAttribute('aria-hidden', 'true');
+};
+
+const openCertificationModal = (card) => {
+    if (!certificationModal || !card) return;
+
+    const image = card.querySelector('img');
+    const title = card.querySelector('h3');
+    const meta = card.querySelector('.certification-meta');
+    const description = card.querySelector('.certification-description');
+
+    if (!image || !title || !description) return;
+
+    certificationModalImage.src = image.getAttribute('src') || '';
+    certificationModalImage.alt = image.getAttribute('alt') || 'Certification image';
+    certificationModalTitle.textContent = title.textContent || '';
+    certificationModalMeta.textContent = meta ? meta.textContent.replace(/\s+/g, ' ').trim() : 'Credential';
+    certificationModalDescription.textContent = description.textContent || '';
+    certificationModalLinks.innerHTML = `<a href="${image.getAttribute('src')}" target="_blank" rel="noopener noreferrer">View Certificate</a>`;
+
+    certificationModal.classList.add('active');
+    certificationModal.setAttribute('aria-hidden', 'false');
+    certificationModal.scrollTop = 0;
+};
+
+certificationCards.forEach(card => {
+    const mediaImage = card.querySelector('img');
+
+    card.addEventListener('mousemove', (event) => {
+        if (!mediaImage) return;
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const shiftX = (x - 0.5) * 8;
+        const shiftY = (y - 0.5) * 6;
+        mediaImage.style.transform = `scale(1.06) translate(${shiftX}px, ${shiftY}px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        if (!mediaImage) return;
+        mediaImage.style.transform = '';
+    });
+
+    card.addEventListener('click', () => {
+        openCertificationModal(card);
+    });
+
+    card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openCertificationModal(card);
+        }
+    });
+});
+
+if (certificationModalClose && certificationModalBackdrop) {
+    certificationModalClose.addEventListener('click', closeCertificationModal);
+    certificationModalBackdrop.addEventListener('click', closeCertificationModal);
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && certificationModal && certificationModal.classList.contains('active')) {
+        closeCertificationModal();
+    }
 });
