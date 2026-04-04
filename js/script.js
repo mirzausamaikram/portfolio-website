@@ -149,3 +149,287 @@ const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
     statObserver.observe(statsSection);
 }
+
+// Featured projects carousel + modal
+const featuredProjectsData = {
+    'climate-loop': {
+        title: 'Climate Loop - Vertical Energy Coordination for HK High-Rises',
+        image: 'images/Climate-loop.png',
+        description: 'Climate Loop coordinates air-conditioning cycles across high-rise apartments to reduce grid stress and resident energy costs. The platform combines 3D thermal visualization, weather integration, and optimization logic to make energy savings easy to understand and act on.',
+        tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'React Three Fiber', 'Flask', 'Python', 'pytest'],
+        github: 'https://github.com/mirzausamaikram/climate-loop',
+        demo: ''
+    },
+    'microclimate': {
+        title: 'MicroClimate HK - Hyperlocal Weather Web App',
+        image: 'images/microclimate-hk.png',
+        description: 'MicroClimate HK delivers hyperlocal forecasts with 3D map overlays and geospatial insights. It includes forecast comparisons, weather alerts, and interactive visual layers backed by a high-performance backend architecture.',
+        tech: ['SvelteKit 2', 'TypeScript', 'Vite 5', 'Deck.gl', 'FastAPI', 'TimescaleDB', 'Redis', 'Docker'],
+        github: 'https://github.com/mirzausamaikram/microclimate-hk',
+        demo: ''
+    },
+    'goodclass': {
+        title: 'GoodClass.AI',
+        image: 'images/Good_Class.jpeg',
+        description: 'Built during the JPMorgan Career LaunchPad Program, this AI-focused work involved developing practical backend capabilities for a real-world learning product. The project earned recognition through the JPMorgan Gold Prize Scholarship.',
+        tech: ['Python', 'Gemini API', 'REST APIs', 'AI/ML'],
+        github: '',
+        demo: ''
+    },
+    'mrsmart': {
+        title: 'MRsmartinspector',
+        image: 'images/MRinspectorApp.png',
+        description: 'MRsmartinspector is an AR/VR workplace safety solution built for Apple Vision Pro. It enables immersive inspection workflows and demonstrates practical spatial computing design in a fast-paced internship setting.',
+        tech: ['Swift', 'VisionOS', 'Xcode'],
+        github: 'https://github.com/mirzausamaikram/MRSmartApp',
+        demo: ''
+    },
+    'ecommerce': {
+        title: 'Smile & Sunshine E-Commerce Platform',
+        image: 'images/Smile & Sunshine E-Commerce Platform.png',
+        description: 'A polished e-commerce experience with dual user interfaces and persistent state handling. The system focuses on usability and role-aware interactions without relying on backend infrastructure for core flow persistence.',
+        tech: ['JavaScript', 'jQuery', 'localStorage', 'Responsive Design'],
+        github: 'https://github.com/mirzausamaikram/Project_ITP4506',
+        demo: ''
+    },
+    'php-app': {
+        title: 'Dynamic Web Application',
+        image: 'images/PHP_Project.png',
+        description: 'A multi-service web architecture that links a PHP frontend, MySQL data layer, and Flask microservices. The project emphasizes service integration, data consistency, and robust error handling across systems.',
+        tech: ['PHP', 'MySQL', 'Flask', 'REST API'],
+        github: 'https://github.com/mirzausamaikram/PHP_Backend_Project',
+        demo: ''
+    }
+};
+
+const projectsTrack = document.getElementById('projects-track');
+const projectsPrevBtn = document.getElementById('projects-prev');
+const projectsNextBtn = document.getElementById('projects-next');
+const projectsDots = document.getElementById('projects-dots');
+const featuredProjectCards = projectsTrack ? Array.from(projectsTrack.querySelectorAll('.featured-project-card')) : [];
+
+let projectIndex = 0;
+
+const getCardsPerView = () => {
+    if (window.innerWidth <= 700) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+};
+
+const getMaxProjectIndex = () => Math.max(0, featuredProjectCards.length - getCardsPerView());
+
+const renderProjectDots = () => {
+    if (!projectsDots) return;
+    const maxIndex = getMaxProjectIndex();
+    projectsDots.innerHTML = '';
+
+    for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.className = `carousel-dot ${i === projectIndex ? 'active' : ''}`;
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to project slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+            projectIndex = i;
+            updateProjectCarousel();
+        });
+        projectsDots.appendChild(dot);
+    }
+};
+
+const updateProjectCarousel = () => {
+    if (!projectsTrack || featuredProjectCards.length === 0) return;
+
+    const maxIndex = getMaxProjectIndex();
+    projectIndex = Math.min(projectIndex, maxIndex);
+    const firstCard = featuredProjectCards[0];
+    const trackStyles = window.getComputedStyle(projectsTrack);
+    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || '0');
+    const offset = projectIndex * (firstCard.offsetWidth + gap);
+
+    projectsTrack.style.transform = `translateX(-${offset}px)`;
+
+    if (projectsPrevBtn) projectsPrevBtn.disabled = projectIndex <= 0;
+    if (projectsNextBtn) projectsNextBtn.disabled = projectIndex >= maxIndex;
+
+    Array.from(projectsDots ? projectsDots.children : []).forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === projectIndex);
+    });
+};
+
+if (projectsTrack && projectsPrevBtn && projectsNextBtn) {
+    renderProjectDots();
+    updateProjectCarousel();
+
+    projectsPrevBtn.addEventListener('click', () => {
+        projectIndex = Math.max(0, projectIndex - 1);
+        updateProjectCarousel();
+    });
+
+    projectsNextBtn.addEventListener('click', () => {
+        projectIndex = Math.min(getMaxProjectIndex(), projectIndex + 1);
+        updateProjectCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+        renderProjectDots();
+        updateProjectCarousel();
+    });
+}
+
+const projectModal = document.getElementById('project-modal');
+const projectModalBackdrop = document.getElementById('project-modal-backdrop');
+const projectModalClose = document.getElementById('project-modal-close');
+const projectModalTitle = document.getElementById('project-modal-title');
+const projectModalImage = document.getElementById('project-modal-image');
+const projectModalDescription = document.getElementById('project-modal-description');
+const projectModalTech = document.getElementById('project-modal-tech');
+const projectModalLinks = document.getElementById('project-modal-links');
+
+const closeProjectModal = () => {
+    if (!projectModal) return;
+    projectModal.classList.remove('active');
+    projectModal.setAttribute('aria-hidden', 'true');
+};
+
+const openProjectModal = (projectId) => {
+    const project = featuredProjectsData[projectId];
+
+    if (!project || !projectModal) return;
+
+    projectModalTitle.textContent = project.title;
+    projectModalImage.src = project.image;
+    projectModalImage.alt = `${project.title} preview`;
+    projectModalDescription.textContent = project.description;
+
+    projectModalTech.innerHTML = project.tech.map(tech => `<span>${tech}</span>`).join('');
+
+    const links = [];
+    if (project.demo) {
+        links.push(`<a class="primary" href="${project.demo}" target="_blank" rel="noopener noreferrer">Live Demo</a>`);
+    }
+    if (project.github) {
+        links.push(`<a class="secondary" href="${project.github}" target="_blank" rel="noopener noreferrer">GitHub</a>`);
+    }
+    if (links.length === 0) {
+        links.push('<span class="project-modal-kicker">Proprietary project details are limited.</span>');
+    }
+
+    projectModalLinks.innerHTML = links.join('');
+
+    projectModal.classList.add('active');
+    projectModal.setAttribute('aria-hidden', 'false');
+    projectModal.scrollTop = 0;
+};
+
+featuredProjectCards.forEach(card => {
+    const projectId = card.getAttribute('data-project-id');
+
+    card.addEventListener('click', (event) => {
+        event.preventDefault();
+        openProjectModal(projectId);
+    });
+    card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openProjectModal(projectId);
+        }
+    });
+});
+
+if (projectModalClose && projectModalBackdrop) {
+    projectModalClose.addEventListener('click', closeProjectModal);
+    projectModalBackdrop.addEventListener('click', closeProjectModal);
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && projectModal && projectModal.classList.contains('active')) {
+        closeProjectModal();
+    }
+});
+
+// Experience and certifications carousel
+const certificationsTrack = document.getElementById('certifications-track');
+const experiencePrevBtn = document.getElementById('experience-prev');
+const experienceNextBtn = document.getElementById('experience-next');
+const experienceDots = document.getElementById('experience-dots');
+const certificationCards = certificationsTrack ? Array.from(certificationsTrack.querySelectorAll('.certification-card')) : [];
+
+let experienceIndex = 0;
+
+const getExperienceCardsPerView = () => {
+    if (window.innerWidth <= 700) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+};
+
+const getMaxExperienceIndex = () => Math.max(0, certificationCards.length - getExperienceCardsPerView());
+
+const renderExperienceDots = () => {
+    if (!experienceDots) return;
+    const maxIndex = getMaxExperienceIndex();
+    experienceDots.innerHTML = '';
+
+    for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.className = `carousel-dot ${i === experienceIndex ? 'active' : ''}`;
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to certification slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+            experienceIndex = i;
+            updateExperienceCarousel();
+        });
+        experienceDots.appendChild(dot);
+    }
+};
+
+const updateExperienceCarousel = () => {
+    if (!certificationsTrack || certificationCards.length === 0) return;
+
+    const maxIndex = getMaxExperienceIndex();
+    experienceIndex = Math.min(experienceIndex, maxIndex);
+    const firstCard = certificationCards[0];
+    const trackStyles = window.getComputedStyle(certificationsTrack);
+    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || '0');
+    const offset = experienceIndex * (firstCard.offsetWidth + gap);
+
+    certificationsTrack.style.transform = `translateX(-${offset}px)`;
+
+    if (experiencePrevBtn) experiencePrevBtn.disabled = experienceIndex <= 0;
+    if (experienceNextBtn) experienceNextBtn.disabled = experienceIndex >= maxIndex;
+
+    Array.from(experienceDots ? experienceDots.children : []).forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === experienceIndex);
+    });
+};
+
+if (certificationsTrack && experiencePrevBtn && experienceNextBtn) {
+    renderExperienceDots();
+    updateExperienceCarousel();
+
+    experiencePrevBtn.addEventListener('click', () => {
+        experienceIndex = Math.max(0, experienceIndex - 1);
+        updateExperienceCarousel();
+    });
+
+    experienceNextBtn.addEventListener('click', () => {
+        experienceIndex = Math.min(getMaxExperienceIndex(), experienceIndex + 1);
+        updateExperienceCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+        renderExperienceDots();
+        updateExperienceCarousel();
+    });
+}
+
+// Read more toggle for certification descriptions
+document.querySelectorAll('.read-more-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.certification-card');
+        if (!card) return;
+
+        const expanded = card.classList.toggle('expanded');
+        button.textContent = expanded ? 'Show less' : 'Read more';
+        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    });
+});
