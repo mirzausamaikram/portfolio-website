@@ -11,13 +11,96 @@ window.addEventListener('scroll', function() {
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const targetSelector = this.getAttribute('href');
+        const target = document.querySelector(targetSelector);
+        if (!target) return;
+
         e.preventDefault();
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        target.scrollIntoView({
             behavior: 'smooth'
         });
     });
 });
+
+// Avatar-triggered profile panel
+const avatarTrigger = document.getElementById('avatar-trigger');
+const avatarAboutPanel = document.getElementById('avatar-about-panel');
+
+if (avatarTrigger && avatarAboutPanel) {
+    let hoverCloseTimer;
+    const isTapOnlyMode = () => {
+        return window.matchMedia('(max-width: 768px), (hover: none), (pointer: coarse)').matches;
+    };
+
+    const openProfile = () => {
+        clearTimeout(hoverCloseTimer);
+        avatarAboutPanel.classList.add('is-open');
+        avatarAboutPanel.setAttribute('aria-hidden', 'false');
+        avatarTrigger.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('profile-open');
+    };
+
+    const closeProfile = () => {
+        clearTimeout(hoverCloseTimer);
+        avatarAboutPanel.classList.remove('is-open');
+        avatarAboutPanel.setAttribute('aria-hidden', 'true');
+        avatarTrigger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('profile-open');
+    };
+
+    const closeProfileWithDelay = () => {
+        clearTimeout(hoverCloseTimer);
+        hoverCloseTimer = setTimeout(() => {
+            closeProfile();
+        }, 120);
+    };
+
+    avatarTrigger.addEventListener('mouseenter', () => {
+        if (isTapOnlyMode()) return;
+        openProfile();
+    });
+
+    avatarTrigger.addEventListener('mouseleave', () => {
+        if (isTapOnlyMode()) return;
+        closeProfileWithDelay();
+    });
+
+    avatarAboutPanel.addEventListener('mouseenter', () => {
+        if (isTapOnlyMode()) return;
+        clearTimeout(hoverCloseTimer);
+        openProfile();
+    });
+
+    avatarAboutPanel.addEventListener('mouseleave', () => {
+        if (isTapOnlyMode()) return;
+        closeProfileWithDelay();
+    });
+
+    avatarTrigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = avatarAboutPanel.classList.contains('is-open');
+        if (isOpen) {
+            closeProfile();
+        } else {
+            openProfile();
+        }
+    });
+
+    avatarAboutPanel.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', () => {
+        closeProfile();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeProfile();
+        }
+    });
+}
 
 // Reveal elements on scroll
 const observer = new IntersectionObserver((entries, obs) => {
@@ -347,206 +430,64 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// Experience and certifications carousel
-const certificationsTrack = document.getElementById('certifications-track');
-const experiencePrevBtn = document.getElementById('experience-prev');
-const experienceNextBtn = document.getElementById('experience-next');
-const experienceDots = document.getElementById('experience-dots');
-const certificationsWindow = document.querySelector('.certifications-window');
-const certificationCards = certificationsTrack ? Array.from(certificationsTrack.querySelectorAll('.certification-card')) : [];
+// Work experience timeline interactions
+const workExpTabs = Array.from(document.querySelectorAll('.workexp-company'));
+const workExpDetails = document.getElementById('workexp-details');
+const workExpRole = document.getElementById('workexp-role');
+const workExpPeriod = document.getElementById('workexp-period');
+const workExpLocation = document.getElementById('workexp-location');
+const workExpPoints = document.getElementById('workexp-points');
+const workExpMediaWrap = document.getElementById('workexp-media-wrap');
+const workExpImage = document.getElementById('workexp-image');
 
-let experienceIndex = 0;
+if (workExpTabs.length > 0 && workExpDetails && workExpRole && workExpPeriod && workExpLocation && workExpPoints) {
+    const renderWorkExpDetails = (tab) => {
+        if (!tab) return;
 
-const getExperienceCardsPerView = () => {
-    if (window.innerWidth <= 700) return 1;
-    if (window.innerWidth <= 1024) return 2;
-    return 3;
-};
-
-const getMaxExperienceIndex = () => Math.max(0, certificationCards.length - getExperienceCardsPerView());
-
-const renderExperienceDots = () => {
-    if (!experienceDots) return;
-    const maxIndex = getMaxExperienceIndex();
-    experienceDots.innerHTML = '';
-
-    for (let i = 0; i <= maxIndex; i++) {
-        const dot = document.createElement('button');
-        dot.className = `carousel-dot ${i === experienceIndex ? 'active' : ''}`;
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Go to certification slide ${i + 1}`);
-        dot.addEventListener('click', () => {
-            experienceIndex = i;
-            updateExperienceCarousel();
+        workExpTabs.forEach((button) => {
+            const isActive = button === tab;
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            button.setAttribute('tabindex', isActive ? '0' : '-1');
         });
-        experienceDots.appendChild(dot);
-    }
-};
 
-const updateExperienceCarousel = () => {
-    if (!certificationsTrack || certificationCards.length === 0) return;
+        const points = (tab.dataset.points || '').split('||').map((item) => item.trim()).filter(Boolean);
 
-    const maxIndex = getMaxExperienceIndex();
-    experienceIndex = Math.min(experienceIndex, maxIndex);
-    const firstCard = certificationCards[0];
-    const trackStyles = window.getComputedStyle(certificationsTrack);
-    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || '0');
-    const offset = experienceIndex * (firstCard.offsetWidth + gap);
+        workExpDetails.classList.add('is-refreshing');
+        workExpRole.textContent = tab.dataset.role || '';
+        workExpPeriod.textContent = tab.dataset.period || '';
+        workExpLocation.textContent = tab.dataset.location || '';
+        workExpPoints.innerHTML = points.map((item) => `<li>${item}</li>`).join('');
 
-    certificationsTrack.style.transform = `translateX(-${offset}px)`;
-
-    if (experiencePrevBtn) experiencePrevBtn.disabled = experienceIndex <= 0;
-    if (experienceNextBtn) experienceNextBtn.disabled = experienceIndex >= maxIndex;
-
-    Array.from(experienceDots ? experienceDots.children : []).forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === experienceIndex);
-    });
-};
-
-if (certificationsTrack && experiencePrevBtn && experienceNextBtn) {
-    certificationCards.forEach((card, idx) => {
-        card.style.transitionDelay = `${idx * 60}ms`;
-    });
-
-    renderExperienceDots();
-    updateExperienceCarousel();
-
-    experiencePrevBtn.addEventListener('click', () => {
-        experienceIndex = Math.max(0, experienceIndex - 1);
-        updateExperienceCarousel();
-    });
-
-    experienceNextBtn.addEventListener('click', () => {
-        experienceIndex = Math.min(getMaxExperienceIndex(), experienceIndex + 1);
-        updateExperienceCarousel();
-    });
-
-    window.addEventListener('resize', () => {
-        renderExperienceDots();
-        updateExperienceCarousel();
-    });
-}
-
-let dragStartX = null;
-
-if (certificationsWindow) {
-    const onPointerDown = (event) => {
-        dragStartX = event.clientX;
-    };
-
-    const onPointerUp = (event) => {
-        if (dragStartX === null) return;
-        const delta = event.clientX - dragStartX;
-
-        if (Math.abs(delta) > 45) {
-            if (delta < 0) {
-                experienceIndex = Math.min(getMaxExperienceIndex(), experienceIndex + 1);
+        if (workExpImage && workExpMediaWrap) {
+            const imageSrc = tab.dataset.image || '';
+            const imageAlt = tab.dataset.imageAlt || 'Work experience image';
+            if (imageSrc) {
+                workExpImage.src = imageSrc;
+                workExpImage.alt = imageAlt;
+                workExpMediaWrap.hidden = false;
             } else {
-                experienceIndex = Math.max(0, experienceIndex - 1);
+                workExpMediaWrap.hidden = true;
             }
-            updateExperienceCarousel();
         }
 
-        dragStartX = null;
+        window.setTimeout(() => {
+            workExpDetails.classList.remove('is-refreshing');
+        }, 180);
     };
 
-    certificationsWindow.addEventListener('pointerdown', onPointerDown);
-    certificationsWindow.addEventListener('pointerup', onPointerUp);
-    certificationsWindow.addEventListener('pointercancel', () => {
-        dragStartX = null;
+    workExpTabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            renderWorkExpDetails(tab);
+        });
+
+        tab.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                renderWorkExpDetails(tab);
+            }
+        });
     });
+
+    renderWorkExpDetails(workExpTabs.find((tab) => tab.classList.contains('is-active')) || workExpTabs[0]);
 }
-
-// Read more toggle for certification descriptions
-document.querySelectorAll('.read-more-btn').forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const card = button.closest('.certification-card');
-        if (!card) return;
-
-        const expanded = card.classList.toggle('expanded');
-        button.textContent = expanded ? 'Show less' : 'Read more';
-        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    });
-});
-
-// Card parallax and modal details for certifications
-const certificationModal = document.getElementById('certification-modal');
-const certificationModalBackdrop = document.getElementById('certification-modal-backdrop');
-const certificationModalClose = document.getElementById('certification-modal-close');
-const certificationModalImage = document.getElementById('certification-modal-image');
-const certificationModalTitle = document.getElementById('certification-modal-title');
-const certificationModalMeta = document.getElementById('certification-modal-meta');
-const certificationModalDescription = document.getElementById('certification-modal-description');
-const certificationModalLinks = document.getElementById('certification-modal-links');
-
-const closeCertificationModal = () => {
-    if (!certificationModal) return;
-    certificationModal.classList.remove('active');
-    certificationModal.setAttribute('aria-hidden', 'true');
-};
-
-const openCertificationModal = (card) => {
-    if (!certificationModal || !card) return;
-
-    const image = card.querySelector('img');
-    const title = card.querySelector('h3');
-    const meta = card.querySelector('.certification-meta');
-    const description = card.querySelector('.certification-description');
-
-    if (!image || !title || !description) return;
-
-    certificationModalImage.src = image.getAttribute('src') || '';
-    certificationModalImage.alt = image.getAttribute('alt') || 'Certification image';
-    certificationModalTitle.textContent = title.textContent || '';
-    certificationModalMeta.textContent = meta ? meta.textContent.replace(/\s+/g, ' ').trim() : 'Credential';
-    certificationModalDescription.textContent = description.textContent || '';
-    certificationModalLinks.innerHTML = `<a href="${image.getAttribute('src')}" target="_blank" rel="noopener noreferrer">View Certificate</a>`;
-
-    certificationModal.classList.add('active');
-    certificationModal.setAttribute('aria-hidden', 'false');
-    certificationModal.scrollTop = 0;
-};
-
-certificationCards.forEach(card => {
-    const mediaImage = card.querySelector('img');
-
-    card.addEventListener('mousemove', (event) => {
-        if (!mediaImage) return;
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-        const shiftX = (x - 0.5) * 8;
-        const shiftY = (y - 0.5) * 6;
-        mediaImage.style.transform = `scale(1.06) translate(${shiftX}px, ${shiftY}px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        if (!mediaImage) return;
-        mediaImage.style.transform = '';
-    });
-
-    card.addEventListener('click', () => {
-        openCertificationModal(card);
-    });
-
-    card.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            openCertificationModal(card);
-        }
-    });
-});
-
-if (certificationModalClose && certificationModalBackdrop) {
-    certificationModalClose.addEventListener('click', closeCertificationModal);
-    certificationModalBackdrop.addEventListener('click', closeCertificationModal);
-}
-
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && certificationModal && certificationModal.classList.contains('active')) {
-        closeCertificationModal();
-    }
-});

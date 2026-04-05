@@ -70,20 +70,32 @@
 
 <header id="header">
     <nav class="container">
-        <a href="#hero" class="logo">Usama Ikram</a>
+        <div class="logo">
+            <button id="avatar-trigger" class="avatar-trigger" type="button" aria-expanded="false" aria-controls="avatar-about-panel" aria-label="Open profile summary">
+                <img src="images/profile-pic.jpeg" alt="Usama Ikram" class="logo-avatar" loading="eager" decoding="async">
+            </button>
+            <span class="logo-name">Usama Ikram</span>
+        </div>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#whats-next">What's Next</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li class="nav-cv-item"><a href="images/CV.png" download>Download CV</a></li>
         </ul>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
             <i class="fas fa-moon"></i>
         </button>
     </nav>
 </header>
+
+<aside id="avatar-about-panel" class="avatar-about-panel" aria-hidden="true">
+    <div class="avatar-about-glow" aria-hidden="true"></div>
+    <img src="images/profile-pic.jpeg" alt="Usama Ikram profile" class="avatar-about-photo" loading="lazy" decoding="async">
+    <h3>Usama Ikram</h3>
+    <p>JPMorgan Gold Prize winner with a track record of performing under pressure. I bridge high-stakes leadership and clean, scalable code to solve real bottlenecks.</p>
+</aside>
 
 <section id="hero" class="hero-section">
     <div class="hero-content">
@@ -100,7 +112,6 @@
             <a href="#contact" class="cta-button secondary">Let's Connect</a>
         </div>
     </div>
-    <div class="scroll-indicator">Scroll</div>
 </section>
 
 <!-- Stats Section -->
@@ -212,17 +223,6 @@
             <span class="stat-number">3</span>
             <span class="stat-label">Prestigious Awards</span>
         </div>
-    </div>
-</section>
-
-<section id="about" class="about-section container reveal">
-    <div class="about-image">
-        <img src="images/profile-pic.jpeg" alt="Usama Ikram professional photo" loading="lazy">
-    </div>
-    <div class="about-text">
-        <h2>About Me</h2>
-        <p>JPMorgan Gold Prize winner with a track record of performing under pressure. I bridge the gap between high-stakes leadership (FIFA Club World Cup) and clean, scalable code. I don't just build apps; I solve bottlenecks.</p>
-        <a href="images/CV.png" download class="cta-button primary highlight">Download My CV</a>
     </div>
 </section>
 
@@ -338,122 +338,44 @@
 </section>
 
 <section id="experience" class="experience-section container reveal">
-    <div class="experience-header">
-        <span class="experience-kicker">Career Highlights</span>
-        <h2>Experience & Certifications</h2>
-        <p>Professional milestones, internships, and global certificates that shaped my full-stack and AI development journey.</p>
-    </div>
-    <div class="experience-carousel" aria-label="Experience and certifications carousel">
-        <button class="carousel-nav prev" id="experience-prev" aria-label="Previous certifications">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="certifications-window">
-            <div class="certifications-track" id="certifications-track">
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open JPMorgan Career LaunchPad Program details">
-            <div class="certification-media">
-                <img src="images/Solomon.png" alt="JPMorgan Career LaunchPad Certificate" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Industry Program</p>
-                <h3>JPMorgan Career LaunchPad Program</h3>
-                <p class="certification-meta"><span>Aug 2025</span><span>JPMorgan</span></p>
-                <p class="certification-description">As part of the IT and Technology team on the GoodClass.AI project, I utilized Python and the Gemini API to develop RESTful APIs that contributed to a real-world AI application. This experience provided hands-on skills in AI-driven development and collaboration in a professional environment.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open Internship at PERI Saudi Arabia details">
-            <div class="certification-media">
-                <img src="images/Internship_PERI.jpg" alt="PERI Internship Certificate" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Internship</p>
-                <h3>Internship - PERI Saudi Arabia</h3>
-                <p class="certification-meta"><span>Sep-Dec 2020</span><span>PERI Saudi Arabia</span></p>
-                <p class="certification-description">I successfully completed a logistics internship at PERI Saudi Arabia from September to December 2020. My responsibilities included supporting the picking and loading process, handling material returns, and receiving basic training on the company's ERP system (PSD). This role enhanced my skills in logistics, inventory management, and teamwork.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open Google Prompting Essentials details">
-            <div class="certification-media">
-                <img src="images/Google_Prompting_Essentials.jpg" alt="Google Prompting Essentials Certificate" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Google Certificate</p>
-                <h3>Google Prompting Essentials</h3>
-                <p class="certification-meta"><span>Professional Credential</span><span>Google</span></p>
-                <p class="certification-description">I have successfully completed the Google Prompting Essentials course, where I learned the fundamentals of effective prompting for large language models. This certification has equipped me with skills to create high-quality, targeted prompts to generate desired outputs, an essential skill in today's AI-driven tech landscape.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open Technical Support Fundamentals details">
-            <div class="certification-media">
-                <img src="images/Technical _Support.jpg" alt="Google Technical Support Fundamentals Certificate" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Google Certificate</p>
-                <h3>Technical Support Fundamentals</h3>
-                <p class="certification-meta"><span>Foundation Credential</span><span>Google</span></p>
-                <p class="certification-description">This is to certify that I have successfully completed the Google Technical Support Fundamentals course, an online non-credit course authorized by Google and offered through Coursera. This course provided me with foundational knowledge and skills in IT support and troubleshooting.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open Google Project Management Certificate details">
-            <div class="certification-media">
-                <img src="images/Project_management.jpg" alt="Google Project Management Certificate" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Google Certificate</p>
-                <h3>Google Project Management Certificate</h3>
-                <p class="certification-meta"><span>Professional Credential</span><span>Google</span></p>
-                <p class="certification-description">I have successfully completed the Google Project Management Certificate, an online non-credit course authorized by Google and offered through Coursera. This demonstrates my proficiency in project planning, execution, and risk management.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-        <article class="certification-card" tabindex="0" role="button" aria-label="Open FIFA Club World Cup appreciation certificate details">
-            <div class="certification-media">
-                <img src="images/FIFA.jpg" alt="FIFA Certificate of Appreciation" loading="lazy">
-            </div>
-            <div class="certification-info">
-                <p class="certification-tag">Global Event Operations</p>
-                <h3>Certificate of Appreciation: FIFA Club World Cup 2023</h3>
-                <p class="certification-meta"><span>Dec 2023</span><span>FIFA Club World Cup</span></p>
-                <p class="certification-description">This certificate is given to Usama Ikram Mirza for the outstanding performance & participation in the field of transportation management in the FIFA Club World Cup Saudi Arabia 2023.</p>
-                <button class="read-more-btn" type="button" aria-expanded="false">Read more</button>
-            </div>
-        </article>
-
-            </div>
-        </div>
-
-        <button class="carousel-nav next" id="experience-next" aria-label="Next certifications">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+    <div class="workexp-header">
+        <h2>Work Experience</h2>
+        <p>I choose roles where I can solve hard problems, grow fast, and ship meaningful outcomes.</p>
     </div>
 
-    <div class="carousel-dots" id="experience-dots" aria-label="Experience carousel pagination"></div>
-
-    <div class="certification-modal" id="certification-modal" aria-hidden="true">
-        <div class="certification-modal-backdrop" id="certification-modal-backdrop"></div>
-        <div class="certification-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certification-modal-title">
-            <button class="certification-modal-close" id="certification-modal-close" aria-label="Close certification details">
-                <i class="fas fa-times"></i>
+    <div class="workexp-layout">
+        <div class="workexp-timeline" role="tablist" aria-label="Work experience companies">
+            <button class="workexp-company is-active" type="button" role="tab" aria-selected="true" data-company="JPMorgan" data-role="Software Engineering Participant @ JPMorgan" data-period="Aug 2025" data-location="Hong Kong" data-image="images/Solomon.png" data-image-alt="JPMorgan program certificate" data-points="Built production APIs for GoodClass.AI using Python and Gemini integration.||Collaborated in a cross-functional team under real program constraints and deadlines.||Delivered backend features that supported AI-assisted learning workflows.">
+                <span class="workexp-dot"><i class="fas fa-building"></i></span>
+                <span>JPMorgan</span>
             </button>
-            <img id="certification-modal-image" src="" alt="Certification image">
-            <div class="certification-modal-body">
-                <p class="certification-modal-kicker">Certification Details</p>
-                <h3 id="certification-modal-title"></h3>
-                <p class="certification-modal-meta" id="certification-modal-meta"></p>
-                <p id="certification-modal-description"></p>
-                <div class="certification-modal-links" id="certification-modal-links"></div>
-            </div>
+            <button class="workexp-company" type="button" role="tab" aria-selected="false" data-company="PERI" data-role="Logistics Intern @ PERI Saudi Arabia" data-period="Sep 2020 - Dec 2020" data-location="Saudi Arabia" data-image="images/Internship_PERI.jpg" data-image-alt="PERI internship certificate" data-points="Supported picking, loading, and material return operations across warehouse flows.||Learned ERP workflows and strengthened inventory handling accuracy.||Contributed to team throughput and on-time operations under field conditions.">
+                <span class="workexp-dot"><i class="fas fa-industry"></i></span>
+                <span>PERI</span>
+            </button>
+            <button class="workexp-company" type="button" role="tab" aria-selected="false" data-company="FIFA Club World Cup" data-role="Transportation Operations Team @ FIFA Club World Cup" data-period="Dec 2023" data-location="Saudi Arabia" data-image="images/FIFA.jpg" data-image-alt="FIFA certificate of appreciation" data-points="Coordinated transportation logistics during a high-pressure global event environment.||Maintained reliability and clear communication across operational checkpoints.||Received certificate of appreciation for performance and commitment.">
+                <span class="workexp-dot"><i class="fas fa-trophy"></i></span>
+                <span>FIFA</span>
+            </button>
+            <button class="workexp-company" type="button" role="tab" aria-selected="false" data-company="Freelance Projects" data-role="Full-Stack Developer @ Independent Projects" data-period="2023 - Present" data-location="Remote" data-image="images/profile-pic.jpeg" data-image-alt="Freelance development profile" data-points="Built AI-integrated web apps with modern frontend and API-first backend stacks.||Designed scalable architecture for projects focused on real user impact.||Shipped end-to-end features from UI/UX to deployment-ready systems.">
+                <span class="workexp-dot"><i class="fas fa-code"></i></span>
+                <span>Freelance</span>
+            </button>
         </div>
+
+        <article class="workexp-details" id="workexp-details" aria-live="polite">
+            <div class="workexp-media" id="workexp-media-wrap">
+                <img id="workexp-image" src="images/Solomon.png" alt="JPMorgan program certificate" loading="lazy">
+            </div>
+            <h3 id="workexp-role">Software Engineering Participant @ JPMorgan</h3>
+            <p class="workexp-period" id="workexp-period">Aug 2025</p>
+            <p class="workexp-location" id="workexp-location">Hong Kong</p>
+            <ul class="workexp-points" id="workexp-points">
+                <li>Built production APIs for GoodClass.AI using Python and Gemini integration.</li>
+                <li>Collaborated in a cross-functional team under real program constraints and deadlines.</li>
+                <li>Delivered backend features that supported AI-assisted learning workflows.</li>
+            </ul>
+        </article>
     </div>
 </section>
 
@@ -567,18 +489,25 @@
         <div class="contact-actions">
             <a href="mailto:mirzausamaikram@gmail.com" class="cta-button">Open for Opportunities</a>
         </div>
-        <div class="contact-details">
-            <a href="mailto:mirzausamaikram@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://linkedin.com/in/usama-ikram-bb08991b0" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/mirzausamaikram" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
     </div>
 </section>
 
 <footer class="footer">
     <div class="container">
-        <p>&copy; 2026 Usama Ikram. All rights reserved.</p>
-        <a href="#hero" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+        <div class="footer-brand">
+            <img src="images/profile-pic.jpeg" alt="Usama Ikram" class="footer-avatar" loading="lazy">
+            <h3>Usama Ikram</h3>
+        </div>
+
+        <div class="footer-divider" aria-hidden="true"></div>
+
+        <p class="footer-copy">&copy; 2026 Usama Ikram. All rights reserved.</p>
+
+        <div class="footer-social" aria-label="Social links">
+            <a href="mailto:mirzausamaikram@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i><span>Email</span></a>
+            <a href="https://linkedin.com/in/usama-ikram-bb08991b0" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+            <a href="https://github.com/mirzausamaikram" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a>
+        </div>
     </div>
 </footer>
 
